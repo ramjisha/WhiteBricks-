@@ -22,12 +22,6 @@
     </div>
     <!-- //banner-text -->
 </div>
-<!-- login -->
-@include('Auth.login')
-<!-- //login -->
-<!-- register -->
-@include('Auth.register')
-<!--//register-->
 <!-- //banner -->
 
 <!-- about -->

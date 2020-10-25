@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,17 +18,13 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/demo', function () {
-    return view('demo');
-});
-
 Route::get('/home', function () {
     return view('index');
-})->name('home');
+})->name('home')->middleware('verified');
 
 Route::get('/about', function () {
     return view('about');
-})->name('about');
+})->middleware('auth')->name('about');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -36,3 +33,9 @@ Route::get('/contact', function () {
 Route::get('/portfolio', function () {
     return view('portfolio');
 })->name('portfolio');
+
+Route::get('/logout', function () {
+    Auth::logout();
+  return redirect('/login');
+})->name('logout');
+

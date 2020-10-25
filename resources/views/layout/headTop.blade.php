@@ -43,11 +43,16 @@
 	                        </div>
 	                        <!-- //social icons -->
 	                        <div class="col-4 header-loginw3ls text-lg-right text-center">
-	                            <a href="#" class="log" data-toggle="modal" data-target="#exampleModalCenter1">
+								@if (!Auth::check())
+									<a href="{{route('login')}}" class="log">
 	                                <i class="fas fa-user mr-2"></i> Login</a>
+								@else
+									<a href="{{route('logout')}}" class="log">
+									<i class="fas fa-user mr-2"></i> Logout</a>
+								@endif
 	                        </div>
 	                        <div class="col-4 header-loginw3ls">
-	                            <a href="#" class="log" data-toggle="modal" data-target="#exampleModalCenter2">
+							<a href="{{route('register')}}" class="log">
 	                                <i class="fas fa-key mr-2"></i> Register</a>
 	                        </div>
 	                    </div>
@@ -88,6 +93,7 @@
 	                                <div class="dropdown-divider"></div>
 	                                <a class="dropdown-item scroll" href="#clients">Clients</a>
 	                                <a class="dropdown-item" href="about.html">Our Agents</a>
+	                                <a class="dropdown-item" href="{{ route('logout')}}">Logout</a>
 	                            </div>
 	                        </li>
 	                        <li

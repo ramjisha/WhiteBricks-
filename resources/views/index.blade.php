@@ -22,8 +22,6 @@
     <!-- //banner text -->
 </div>
 
-@include('Auth.login')
-@include('Auth.register')
 <!-- //banner -->
 
 <!-- banner-bottom -->

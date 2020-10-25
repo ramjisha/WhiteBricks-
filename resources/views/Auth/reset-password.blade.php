@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Register</title>
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -20,19 +20,21 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                     <div class="col-md-5">
-                        <img src="images/login.jpg" alt="login" class="login-card-img">
+                        <img src="/images/login.jpg" alt="login" class="login-card-img">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
                             <div class="brand-wrapper">
-                                <img src="images/logo.svg" alt="logo" class="logo">
+                                <img src="/images/logo.svg" alt="logo" class="logo">
                             </div>
-                            <p class="login-card-description">Sign into your account</p>
-                            <form method="POST" action="{{ route('login') }}">
+                            <p class="login-card-description">Reset Password</p>
+                            <form method="POST" action="{{ route('password.update') }}">
                                 @csrf
+                                <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email address">
+                                    <input type="email" name="email" class="form-control" placeholder="Email address"
+                                        value="{{ $request->email}}">
                                     @error('email')
                                     <span class="alert alert-danger" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -42,19 +44,22 @@
 
                                 <div class="form-group mb-4">
                                     <label for="password" class="sr-only">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control"
+                                    <input type="password" name="password" id="password1" class="form-control"
                                         placeholder="***********">
-                                    @error('password')
-                                    <span class="alert alert-danger" role="alert"">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input id="password-confirm" type="password" class="form-control"
+                                        name="password_confirmation" required autocomplete="new-password"
+                                        placeholder="Confirm password">
+                                </div>
+                                @error('password')
+                                <span class="alert alert-danger" role="alert"">
                                         <strong>{{ $message }}</strong>
                                     </span>
                     @enderror
-                  </div>
-                  <input name=" login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
+                  <input name=" reset" id="reset" class="btn btn-block login-btn mb-4" type="submit" value="Update">
                             </form>
-                            <a href="{{ route('password.request')}}" class="forgot-password-link">Forgot password?</a>
-                            <p class="login-card-footer-text">Don't have an account? <a href="{{ route('register') }}"
-                                    class="text-reset">Register here</a></p>
                             <nav class="login-card-footer-nav">
                                 <a href="#!">Terms of use.</a>
                                 <a href="#!">Privacy policy</a>
@@ -65,6 +70,8 @@
             </div>
         </div>
     </main>
+
+
 </body>
 
 </html>
